@@ -1,7 +1,8 @@
 class SupplyChain {
-    constructor(name="", origin="", chain=[]){
+    constructor(name="", origin="", price="", chain=[]){
         this.name = name;
         this.origin = origin;
+        this.price = price;
         this.chain = chain;
     }
 }

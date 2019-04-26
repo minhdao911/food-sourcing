@@ -58,6 +58,7 @@ router.get("/pname", (req, res) => {
     for(let c of chain){
         if(c[c.length-1].location === loc){
             sc.chain = c;
+            sc.price = c[c.length-1].cost;
             break;
         }
     }
