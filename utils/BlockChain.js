@@ -1,3 +1,5 @@
+const Block = require('./Block.js');
+
 // Objects of BlockChain class have a field 'block_chain' that is an array of Block class objects
 // The BlockChain can have Blocks added to it (updateBlockChain), and it can also be checked for validity (verify)
 // If the BlockChain has been tampered with, verify() will return false
@@ -36,3 +38,5 @@ class BlockChain{
         return(flag);
     }
 }
+
+module.exports = BlockChain;
