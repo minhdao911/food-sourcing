@@ -20,6 +20,10 @@
   "homepage": "https://github.com/minhdao911/food-sourcing#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "crypto-js": "^3.1.9-1"
   }
 }
