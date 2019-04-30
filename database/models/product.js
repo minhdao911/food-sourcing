@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-    _id: String,
-    hash: String,
-    prevHash: String,
+    _id: mongoose.Schema.Types.ObjectId,
     name: String,
     qrcode: String,
     stage: String,
@@ -12,9 +10,11 @@ const productSchema = mongoose.Schema({
     location: String,
     transportation: String,
     transportTo: String,
-    cost: Number
+    cost: String,
+    hash: String,
+    prevHash: String
 })
 
-mondule.exports = mongoose.model('Product', productSchema)
+module.exports = mongoose.model('Product', productSchema)
 
 

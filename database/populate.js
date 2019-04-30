@@ -1,9 +1,11 @@
 
-const Prodcut = require('../database/models/product');
+const Product = require('../food-sourcing/database/models/product');
 const mongoose = require('mongoose');
 
-const product1 = new Prodcut({
-    id: "5cc10240fc13ae75e0000000",
+
+
+const product1 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "farming",
@@ -12,15 +14,19 @@ const product1 = new Prodcut({
     location: "Po Box 423, Jayton, TX, 79528",
     transportFrom: null,
     transportTo: null,
-    cost: "$1890.00"
+    cost: "$1890.00",
+    hash: 'afsdfdsfsdfasda323',
+    preHash: '0'
 });
-product1.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product1, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product2 = new Prodcut({
-    id: "5cc10240fc13ae75e0000001",
+
+const product2 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -29,14 +35,18 @@ const product2 = new Prodcut({
     location: "Po Box 423, Jayton, TX, 79528",
     transportFrom: "Po Box 423, Jayton, TX, 79528",
     transportTo: "1 First American Way, Santa Ana, CA, 92707",
-    cost: "$450.00"
+    cost: "$450.00",
+    hash: 'awcneulwnfi42kdi',
+    preHash: 'afsdfdsfsdfasda323'
+    
 });
-product2.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
-const product3 = new Prodcut({
-    id: "5cc10240fc13ae75e0000003",
+Product.create(product2, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+const product3 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -45,14 +55,18 @@ const product3 = new Prodcut({
     location: "Po Box 423, Jayton, TX, 79528",
     transportFrom: "Po Box 423, Jayton, TX, 79528",
     transportTo: "1507 Nolan St, San Antonio, TX, 78202",
-    cost: "$175.00"
+    cost: "$175.00",
+    hash: 'acnekdi5ej3u',
+    preHash: 'awcneulwnfi42kdi'
 })
-product3.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
-const product4 = new Prodcut({
-    id: "5cc10240fc13ae75e0000003",
+Product.create(product3, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+const product4 = new Product({
+    _id: new mongoose.Types.ObjectId(),
+    id: mongoose.Schema.Types.ObjectId,
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -61,15 +75,17 @@ const product4 = new Prodcut({
     location: "1507 Nolan St, San Antonio, TX, 78202",
     transportFrom: "Po Box 423, Jayton, TX, 79528",
     transportTo: "1507 Nolan St, San Antonio, TX, 78202",
-    cost: null
+    cost: null,
+    hash: 'fbievleumd78ej',
+    preHash: 'awcneulwnfi42kdi'
 })
-product4.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
-
-const product5 = new Prodcut({
-    id: "5cc10240fc13ae75e0000001",
+Product.create(product4, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+const product5 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -78,15 +94,18 @@ const product5 = new Prodcut({
     location: "1 First American Way, Santa Ana, CA, 92707",
     transportFrom: "Po Box 423, Jayton, TX, 79528",
     transportTo: "1 First American Way, Santa Ana, CA, 92707",
-    cost: null
+    cost: null,
+    hash: 'keucmeyiwl98che7',
+    preHash: 'fbievleumd78ej'
 })
-product5.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product5, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product6 = new Prodcut({
-    id: "5cc10240fc13ae75e0000006",
+const product6 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "processing",
@@ -95,15 +114,18 @@ const product6 = new Prodcut({
     location: "1507 Nolan St, San Antonio, TX, 78202",
     transportFrom: null,
     transportTo: null,
-    cost: "$2.00"
+    cost: "$2.00",
+    hash: 'y37db38ciw9',
+    preHash: 'keucmeyiwl98che7'
 })
-product6.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product6, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product7 = new Prodcut({
-    id: "5cc10240fc13ae75e0000007",
+const product7 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -112,15 +134,18 @@ const product7 = new Prodcut({
     location: "1507 Nolan St, San Antonio, TX, 78202",
     transportFrom: "1507 Nolan St, San Antonio, TX, 78202",
     transportTo: "5025 Northwest Loop 410, San Antonio, TX, 78229",
-    cost: "$85.00"
+    cost: "$85.00",
+    hash: 'naweivvashi34',
+    preHash: 'y37db38ciw9'
 })
-product7.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product7, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product8 = new Prodcut({
-    id: "5cc10240fc13ae75e0000002",
+const product8 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "processing",
@@ -129,15 +154,18 @@ const product8 = new Prodcut({
     location: "1 First American Way, Santa Ana, CA, 92707",
     transportFrom: null,
     transportTo: null,
-    cost: "$2.10"
+    cost: "$2.10",
+    hash: 'naywndiwo245',
+    preHash: 'naweivvashi34'
 })
-product8.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product8, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
     
-const product9 = new Prodcut({
-    id: "5cc10240fc13ae75e0000007",
+const product9 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -146,15 +174,18 @@ const product9 = new Prodcut({
     location: "5025 Northwest Loop 410, San Antonio, TX, 78229",
     transportFrom: "1507 Nolan St, San Antonio, TX, 78202",
     transportTo: "5025 Northwest Loop 410, San Antonio, TX, 78229",
-    cost: null
+    cost: null,
+    hash: 'ieymciwnfy37',
+    preHash: 'naywndiwo245'
 })
-product9.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product9, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product10 = new Prodcut({
-    id: "5cc10240fc13ae75e0000004",
+const product10 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -163,15 +194,18 @@ const product10 = new Prodcut({
     location: "1 First American Way, Santa Ana, CA, 92707",
     transportFrom: "1 First American Way, Santa Ana, CA, 92707",
     transportTo: "3600 W McFadden Ave, Santa Ana, CA, 92704",
-    cost: "$120.00"
+    cost: "$120.00",
+    hash: 'nd2ofkeu49d3',
+    preHash: 'ieymciwnfy37'
 })
-product10.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
+Product.create(product10, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
 
-const product11 = new Prodcut({
-    id: "5cc10240fc13ae75e0000009",
+const product11 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "consuming",
@@ -180,15 +214,17 @@ const product11 = new Prodcut({
     location: "5025 Northwest Loop 410, San Antonio, TX, 78229",
     transportFrom: null,
     transportTo: null,
-    cost: "$2.15"
+    cost: "$2.15",
+    hash: 'cabdvoafviu4',
+    preHash: 'nd2ofkeu49d3'
 })
-product11.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
-
-const product12 = new Prodcut({
-    id: "5cc10240fc13ae75e0000004",
+Product.create(product11, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+const product12 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "transportation",
@@ -197,15 +233,17 @@ const product12 = new Prodcut({
     location: "3600 W McFadden Ave, Santa Ana, CA, 92704",
     transportFrom: "1 First American Way, Santa Ana, CA, 92707",
     transportTo: "3600 W McFadden Ave, Santa Ana, CA, 92704",
-    cost: null
+    cost: null,
+    hash: 'afbndfoje3f03k',
+    preHash: 'cabdvoafviu4'
 })
-product12.save().then(result => {
-    console.log(result);
-})
-.catch(err => console.log(err));
-
-const product13 = new Prodcut({
-    id: "5cc10240fc13ae75e0000005",
+Product.create(product12, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+const product13 = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: "avocado",
     qrcode: "1Pb1xDCsnDriC8dYQYaJPJ7Dkr784LJNXD",
     stage: "consuming",
@@ -214,10 +252,19 @@ const product13 = new Prodcut({
     location: "3600 W McFadden Ave, Santa Ana, CA, 92704",
     transportFrom: null,
     transportTo: null,
-    cost: "$2.89"
+    cost: "$2.89",
+    hash: 'vuemcaovno4',
+    preHash: 'afbndfoje3f03k'
 })
-product13.save().then(result => {
-    console.log(result);
+Product.create(product13, err => {
+    if(err) console.log(err);
+    else 
+        console.log('added product');
+});
+
+Product.find({}, (err, p) => {
+    if(err) console.log(err);
+    else{
+        console.log(p)
+    }
 })
-.catch(err => console.log(err));
-{

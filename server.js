@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
 
+require('dotenv').config();
+
 mongoose.Promise = global.Promise;
 
 //Database connection
-mongoose.connect("mongodb+srv://admin:howdy@food-souce-db-5nbdt.mongodb.net/test?retryWrites=true",
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@food-souce-db-5nbdt.mongodb.net/test?retryWrites=true`,
  {
     useNewUrlParser: true,
 }).then(()=> {
@@ -23,6 +25,9 @@ mongoose.connect("mongodb+srv://admin:howdy@food-souce-db-5nbdt.mongodb.net/test
     process.exit();
 })
 
+var db = mongoose.connection;
+
+// const products = require('../food-sourcing/populate');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -31,8 +36,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/sc', supplychainRoutes);
-
-
 
 app.listen(port, () => {
     console.log("Server is running at " + port);
