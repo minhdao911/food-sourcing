@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
     date: String,
     amount: Number,
     location: String,
-    transportation: String,
+    transportFrom: String,
     transportTo: String,
     cost: String,
     hash: String,
