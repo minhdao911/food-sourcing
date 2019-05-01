@@ -5,16 +5,12 @@ const productSchema = mongoose.Schema({
     name: String,
     qrcode: String,
     stage: String,
-    date: String,
+    date: {type: Date, default: Date.now},
     amount: Number,
     location: String,
     transportFrom: String,
     transportTo: String,
-    cost: String,
-    hash: String,
-    prevHash: String
-})
+    cost: String
+});
 
-module.exports = mongoose.model('Product', productSchema)
-
-
+module.exports = mongoose.model('Product', productSchema);

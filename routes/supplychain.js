@@ -3,7 +3,7 @@ const express = require('express'),
 
 const SupplyChain = require('../core/SupplyChain');
 // const products = require('../utils/product.json');
-const Product = require('../database/models/product');
+const Block = require('../database/models/block');
 
 
 //get supplychain of product with name
@@ -14,65 +14,74 @@ router.get("/pname", (req, res) => {
     let loc = req.query.loc;
     let sc = new SupplyChain(name);
     let chain = [];
-    Product.find({}, (err, products) => {
+    Block.find({}).populate('record').exec((err, blocks) => {
         if(err) console.log(err);
         else{
-            products = products.map(p => p.name == "avocado");
-            console.log(products);
+            const products = blocks
+                .filter(b => (b.record && b.record.name === 'avocado'))
+                .map(b => b.record);
             products.forEach(record => {
-                if(record.name === name){
-                    switch(record.stage){
-                        case "farming":
-                            sc.origin = record.location;
-                            chain.push([record]);
-                            break;
-                        case "processing":
-                            for(let c of chain){
-                                if(c[c.length-1].location === record.location){
-                                    c.push(record);
-                                    break;
-                                }
-                            };
-                            break;
-                        case "transportation":
-                            let b = false;
-                            for(let c of chain){
-                                if(!c[c.length-1].transportTo){
-                                    if(c[c.length-1].location === record.transportFrom){
-                                        c.push(record);
-                                        b = false;
-                                        break;
-                                    }
-                                }else if(c[c.length-1].transportTo === record.location){
-                                    c.push(record);
+                let {stage, date, location, transportFrom, transportTo, cost} = record;
+                let data = {
+                    stage,
+                    date,
+                    location,
+                    transportFrom,
+                    transportTo,
+                    cost
+                };
+                switch(stage){
+                    case "farming":
+                        sc.origin = location;
+                        chain.push([data]);
+                        break;
+                    case "processing":
+                        for(let c of chain){
+                            if(c[c.length-1].location === location){
+                                c.push(data);
+                                break;
+                            }
+                        };
+                        break;
+                    case "transportation":
+                        let b = false;
+                        for(let c of chain){
+                            if(!c[c.length-1].transportTo){
+                                if(c[c.length-1].location === transportFrom){
+                                    c.push(data);
                                     b = false;
                                     break;
-                                }else
-                                    b = true;
-                            };
-                            if(b) chain.push([record]);
-                            break;
-                        case "consuming":       
-                            for(let c of chain){
-                                if(c[c.length-1].location === record.location){
-                                    c.push(record);
-                                    break;
                                 }
-                            };
-                            break;
-                    }
+                            }else if(c[c.length-1].transportTo === location){
+                                c.push(data);
+                                b = false;
+                                break;
+                            }else
+                                b = true;
+                        };
+                        if(b) chain.push([data]);
+                        break;
+                    case "consuming":  
+                        for(let c of chain){
+                            if(c[c.length-1].location === location){
+                                c.push(data);
+                                break;
+                            }
+                        };
+                        break;
                 }
             });
+            console.log(chain);
             for(let c of chain){
                 if(c[c.length-1].location === loc){
-                    sc.chain = c;
+                    sc.chain = [chain[0][0], ...c];
                     sc.price = c[c.length-1].cost;
                     break;
                 }
             }
+            res.json(sc);
         }
     });
-    res.json(sc);
 });
 
 module.exports = router;
